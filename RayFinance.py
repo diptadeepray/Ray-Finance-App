@@ -1,4 +1,15 @@
-from customtkinter import *
+from plyer import notification
+
+notification.notify(
+    title="Notification Title",
+    message="This is a test notification.",
+    app_name="Python Script",
+    timeout=5  # Notification disappears after 5 seconds
+)
+
+
+
+'''from customtkinter import *
 
 # Create the main window
 app = CTk()
@@ -93,4 +104,4 @@ login_button.pack(expand=True, fill="both", pady=(30, 15), padx=30)
 error_label = CTkLabel(master=frame_3, text="", font=("Arial", 14))
 
 
-app.mainloop()
+app.mainloop()'''
