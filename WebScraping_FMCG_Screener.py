@@ -136,7 +136,7 @@ def WebScrapingOtherFMCGCompanies(url):
 
 
 
-def WebScraping_IT_Screener_Method():
+def WebScraping_FMCG_Screener_Method():
     WebScrapingHUL()
 
     for oneFMCGComapnyLink in allOtherFMCGCompanyinks:

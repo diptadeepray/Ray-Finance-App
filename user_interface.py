@@ -9,6 +9,7 @@ app.title("Ray Finance")
 
 
 
+current_scrollable_frame = None # To hold the reference to the scrollable frame
 
 
 
@@ -51,6 +52,20 @@ def on_button_click():
     # The is made analysis_dropdown_menu global
     # By this line we are getting the option that user has selected
 
+    global current_scrollable_frame
+    # If we donot \ explicitly tell the compiler that we are working with global variable
+    # Python will treat current_scrollable_frame as a local variable
+
+    if current_scrollable_frame is not None:
+        current_scrollable_frame.pack_forget()
+        # How CTkScrollableFrame behaves is a problem— destroying it does not remove its visual placeholder entirely until the layout is recalculated.
+        # So we needed to call .pack_forget() before destroying the frame. This will remove the reference from the layout manager then we can destroy the frame.
+
+
+        current_scrollable_frame.destroy()
+        current_scrollable_frame=None
+        # So that the scrollable frame-from previous gets destroyed.
+        # And doesnot occupy screen space so that we can view the current scrollableFrame properly
 
 
 
@@ -62,7 +77,9 @@ def on_button_click():
         dynamic_label = CTkLabel(master=tabview.tab("Share Market"), text="System is running. Please wait...")
         dynamic_label.pack(pady=10)
 
-        frame_1_for_label1 = CTkScrollableFrame(master=tabview.tab("Share Market"), fg_color="#CD8C67")
+
+        #global current_scrollable_frame
+        current_scrollable_frame = CTkScrollableFrame(master=tabview.tab("Share Market"), fg_color="#CD8C67")
         # frame_1_for_label1.grid(row=0, column=0, rowspan=2, sticky="nsew", padx=50, pady=50)
 
         import WebScraping_IT_Screener
@@ -77,14 +94,14 @@ def on_button_click():
             print()
 
             # Title label for the table
-            title_label = CTkLabel(master=frame_1_for_label1,
+            title_label = CTkLabel(master=current_scrollable_frame,
                                    text=oneLabel,
                                    font=("Arial", 16, "bold"),
                                    text_color="white")
             title_label.pack(pady=(20, 5))  # padding for spacing above and below the label
 
             # Create a frame to hold the table
-            table_frame = CTkFrame(master=frame_1_for_label1,
+            table_frame = CTkFrame(master=current_scrollable_frame,
                                    fg_color="transparent")  # transparent to inherit scrollable bg
 
             table_frame.pack(pady=10, fill="both", expand=True, anchor="center")
@@ -102,7 +119,7 @@ def on_button_click():
                                      fg_color="#e0e0e0" if i == 0 else "#f8f8f8", text_color="black")
                     label.grid(row=i + 1, column=j, padx=5, pady=2)
 
-        frame_1_for_label1.pack(fill="both", expand=True, padx=20, pady=20)
+        current_scrollable_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
         dynamic_label.destroy()
 
@@ -125,11 +142,12 @@ def on_button_click():
         dynamic_label = CTkLabel(master=tabview.tab("Share Market"), text="System is running. Please wait...")
         dynamic_label.pack(pady=10)
 
-        frame_1_for_label1 = CTkScrollableFrame(master=tabview.tab("Share Market"), fg_color="#CD8C67")
+
+        current_scrollable_frame = CTkScrollableFrame(master=tabview.tab("Share Market"), fg_color="#CD8C67")
         # frame_1_for_label1.grid(row=0, column=0, rowspan=2, sticky="nsew", padx=50, pady=50)
 
-        import WebScraping_IT_Screener
-        tablesLablesTogether = WebScraping_IT_Screener.WebScraping_IT_Screener_Method()
+        import WebScraping_FMCG_Screener
+        tablesLablesTogether = WebScraping_FMCG_Screener.WebScraping_FMCG_Screener_Method()
 
         TopRow_CompanyNames = ["", "HUL", "Marico", "Nestle", "Britannia", "Godrej Consumer", "Patanjali","Dabur","Adani Wilmar","Emami","Colgate-Palmolive","ITC","Reliance"]
         # First comum is left blank because there the 10 years, 5 years, 3 years...is displayed
@@ -140,14 +158,14 @@ def on_button_click():
             print()
 
             # Title label for the table
-            title_label = CTkLabel(master=frame_1_for_label1,
+            title_label = CTkLabel(master=current_scrollable_frame,
                                    text=oneLabel,
                                    font=("Arial", 16, "bold"),
                                    text_color="white")
             title_label.pack(pady=(20, 5))  # padding for spacing above and below the label
 
             # Create a frame to hold the table
-            table_frame = CTkFrame(master=frame_1_for_label1,
+            table_frame = CTkFrame(master=current_scrollable_frame,
                                    fg_color="transparent")  # transparent to inherit scrollable bg
 
             table_frame.pack(pady=10, fill="both", expand=True, anchor="center")
@@ -165,7 +183,7 @@ def on_button_click():
                                      fg_color="#e0e0e0" if i == 0 else "#f8f8f8", text_color="black")
                     label.grid(row=i + 1, column=j, padx=5, pady=2)
 
-        frame_1_for_label1.pack(fill="both", expand=True, padx=20, pady=20)
+        current_scrollable_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
         dynamic_label.destroy()
 
@@ -279,7 +297,7 @@ app.grid_columnconfigure(2, weight=1)
 frame_3 = CTkFrame(master=app, fg_color="#4EAC7D", width=500, height=350)
 frame_3.grid(row=1, column=1, padx=20, pady=20)  # Place it in the center
 
-CTkLabel(master=frame_3, text="Section 3", font=("Arial Bold", 20), justify="left").pack(expand=True, pady=(30, 15))
+CTkLabel(master=frame_3, text="Welcome to Ray Finace", font=("Arial Bold", 20), justify="left").pack(expand=True, pady=(30, 15))
 username_entry = CTkEntry(master=frame_3, placeholder_text="Enter your username", width=400)
 username_entry.pack(expand=True, pady=15, padx=20)
 password_entry = CTkEntry(master=frame_3, placeholder_text="Enter your password", width=400, show="*")
