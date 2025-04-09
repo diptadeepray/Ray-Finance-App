@@ -13,7 +13,7 @@
 ## 📌 Introduction
 ### Overview
 **Ray Finance** is a desktop application designed to fetch and display financial metrics of top companies in different sectors using real-time data scraping from <code>screener.in</code>. The app offers a tabbed interface and a user-friendly GUI powered by CustomTkinter.
-###Scope
+### Scope
 This document covers the featured, project structure, architecture, code overview, how to use, requirements and guidelines for this Ray Finance project.
 
 
@@ -96,111 +96,4 @@ venv\Scripts\activate
     <pre><code>pip freeze > requirements.txt</code></pre>
   </li>
 </ul>
-
-
-
-<h1>📊 Ray Finance: Sectoral Stock Analysis Dashboard</h1>
-
-<h2>✨ Features</h2>
-<ul>
-  <li><strong>Login Interface:</strong> Authenticated access with a simple GUI built using CustomTkinter.</li>
-  <li><strong>Dropdown-Based Sector Selection:</strong> Choose between IT Outsourcing and FMCG sectors for analysis.</li>
-  <li><strong>Live Web Scraping:</strong> Extracts and processes financial data from <code>screener.in</code>.</li>
-  <li><strong>Dynamic UI:</strong> Scrollable and responsive tables for multiple companies and financial metrics.</li>
-  <li><strong>Tabbed Layout:</strong> Share Market, Gold Market, and Debt Investing tabs with dynamic content loading.</li>
-</ul>
-
-
-<h2>📁 Project Structure</h2>
-<pre>
-📦 RayFinance
-├── 🧠 user_interface.py             # Main GUI file with login, tabs, and dynamic analysis rendering
-├── 🔍 WebScraping_IT_Screener.py   # Scraper for TCS and IT sector competitors
-├── 🔍 WebScraping_FMCG_Screener.py # Scraper for HUL and other FMCG companies
-</pre>
-
-<h2>🧱 Architecture</h2>
-<ul>
-  <li><strong>Frontend GUI:</strong> Built with <code>customtkinter</code> for an enhanced look and feel of the desktop app.</li>
-  <li><strong>Web Scraping Modules:</strong> 
-    <ul>
-      <li><code>WebScraping_IT_Screener.py</code> - Scrapes TCS and other major IT companies.</li>
-      <li><code>WebScraping_FMCG_Screener.py</code> - Scrapes HUL and other major FMCG companies.</li>
-    </ul>
-  </li>
-  <li><strong>Backend Logic:</strong> The scraping results are returned as structured tables and injected into the UI dynamically on selection.</li>
-</ul>
-
-
-
-<h2>🧾 Code Overview</h2>
-
-<h3><code>user_interface.py</code></h3>
-<ul>
-  <li>Initializes the app window and handles login authentication.</li>
-  <li>On successful login, shows tabs and dropdown to select sectors.</li>
-  <li>Dynamically imports and runs the appropriate web scraping module based on selection.</li>
-  <li>Displays the results in styled, scrollable tables inside the Share Market tab.</li>
-</ul>
-
-<h3><code>WebScraping_IT_Screener.py</code></h3>
-<ul>
-  <li>Scrapes data from TCS, Infosys, Wipro, HCL Tech, Tech Mahindra, and LTIMindtree.</li>
-  <li>Extracts and aligns metrics like:
-    <ul>
-      <li>Compounded Sales Growth</li>
-      <li>Compounded Profit Growth</li>
-      <li>Stock Price CAGR</li>
-      <li>Return on Equity</li>
-    </ul>
-  </li>
-</ul>
-
-<h3><code>WebScraping_FMCG_Screener.py</code></h3>
-<ul>
-  <li>Scrapes financial metrics from companies like HUL, Nestle, Britannia, Dabur, ITC, and more.</li>
-  <li>Follows the same extraction logic as the IT screener for consistency.</li>
-</ul>
-
-
-
-<h2>🚀 How to Use</h2>
-<ol>
-  <li>Ensure you have Python 3 installed and run the following to install dependencies:</li>
-</ol>
-<pre><code>pip install requests beautifulsoup4 customtkinter</code></pre>
-
-<ol start="2">
-  <li>Run the application:</li>
-</ol>
-<pre><code>python user_interface.py</code></pre>
-
-<ol start="3">
-  <li>Login using:
-    <ul>
-      <li><strong>Username:</strong> admin</li>
-      <li><strong>Password:</strong> 1234</li>
-    </ul>
-  </li>
-  <li>Select a sector from the dropdown and click "Run Analysis".</li>
-  <li>Wait a few moments while real-time data is fetched and displayed.</li>
-</ol>
-
-
-
-<h2>🛠️ Requirements</h2>
-<ul>
-  <li>Python 3.8 or above</li>
-  <li><code>requests</code></li>
-  <li><code>beautifulsoup4</code></li>
-  <li><code>customtkinter</code></li>
-</ul>
-
-<h2>📌 Notes</h2>
-<ul>
-  <li>The scraping is done directly from public sources without any API dependency.</li>
-  <li>Ensure a stable internet connection while scraping data.</li>
-</ul>
-
-
 
